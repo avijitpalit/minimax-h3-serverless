@@ -23,7 +23,7 @@ RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfy
 
 # Copy the handler and startup script from the cloned worker repo into ComfyUI
 RUN cp /worker-comfyui/handler.py /comfyui/handler.py
-RUN cp /worker-comfyui/start.sh /comfyui/start.sh
+# RUN cp /worker-comfyui/start.sh /comfyui/start.sh
 RUN chmod +x /comfyui/start.sh
 
 # Install MiniMax H3 Custom Nodes
@@ -51,4 +51,4 @@ RUN pip install --no-cache-dir -r ComfyUI-KJNodes/requirements.txt || true
 WORKDIR /comfyui
 
 # Start the Serverless worker
-CMD ["./start.sh"]
+CMD ["python", "-u", "/comfyui/handler.py"]

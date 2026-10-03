@@ -21,6 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Clone the official RunPod worker repository
 RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfyui
 
+COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
+
 # Copy the handler and startup script from the cloned worker repo into ComfyUI
 RUN cp /worker-comfyui/handler.py /comfyui/handler.py
 # RUN cp /worker-comfyui/start.sh /comfyui/start.sh

@@ -26,6 +26,7 @@ RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
 
 # CRITICAL: Copy ALL Python files from worker repo
 #RUN cp /worker-comfyui/*.py /comfyui/
+RUN cp /worker-comfyui/src/*.py /worker-comfyui/
 
 # Copy extra model paths config
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml

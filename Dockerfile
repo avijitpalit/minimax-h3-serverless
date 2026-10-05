@@ -14,6 +14,9 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Install PyTorch 2.9.1 with CUDA 13.0
 RUN pip install --no-cache-dir torch==2.9.1+cu130 torchvision==0.24.1+cu130 torchaudio==2.9.1+cu130 --index-url https://download.pytorch.org/whl/cu130
 
+# Install the RunPod SDK (required by handler.py)
+RUN pip install --no-cache-dir runpod
+
 # Clone ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
 WORKDIR /comfyui

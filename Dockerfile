@@ -25,7 +25,7 @@ RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfy
 RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
 
 # CRITICAL: Copy ALL Python files from worker repo
-RUN cp /worker-comfyui/*.py /comfyui/
+#RUN cp /worker-comfyui/*.py /comfyui/
 
 # Copy extra model paths config
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
@@ -51,4 +51,4 @@ RUN pip install --no-cache-dir -r ComfyUI-KJNodes/requirements.txt || true
 WORKDIR /comfyui
 
 # Start the handler directly (no custom start.sh)
-CMD ["python", "-u", "/comfyui/handler.py"]
+CMD ["python", "-u", "/worker-comfyui/handler.py"]

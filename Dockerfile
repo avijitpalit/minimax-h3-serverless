@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir torch==2.9.1+cu130 torchvision==0.24.1+cu130 torc
 # Install the RunPod SDK (required by handler.py)
 RUN pip install --no-cache-dir runpod
 
+# Install worker dependencies (runpod, websocket-client, etc.)
+RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
+
 # Clone ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
 WORKDIR /comfyui

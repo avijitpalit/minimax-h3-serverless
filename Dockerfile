@@ -23,8 +23,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Clone the official RunPod worker repository
 RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfyui
-
 RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
+ENV PYTHONPATH="/worker-comfyui:${PYTHONPATH}"
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 

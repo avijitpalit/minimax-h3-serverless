@@ -50,8 +50,3 @@ RUN pip install --no-cache-dir -r ComfyUI-KJNodes/requirements.txt || true
 
 # Set working directory back to ComfyUI
 WORKDIR /comfyui
-
-# Start the Serverless worker
-COPY start.sh /comfyui/start.sh
-RUN chmod +x /comfyui/start.sh
-CMD ["/comfyui/start.sh"]

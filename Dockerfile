@@ -30,6 +30,7 @@ COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 
 # Copy the handler and startup script from the cloned worker repo into ComfyUI
 RUN cp /worker-comfyui/handler.py /comfyui/handler.py
+RUN cp /worker-comfyui/network_volume.py /comfyui/network_volume.py
 # RUN cp /worker-comfyui/start.sh /comfyui/start.sh
 # RUN chmod +x /comfyui/start.sh
 

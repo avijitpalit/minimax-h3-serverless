@@ -1,4 +1,3 @@
-# .
 # Start from a CUDA 13.0 runtime image
 FROM nvidia/cuda:13.0.0-cudnn-runtime-ubuntu24.04
 
@@ -17,9 +16,6 @@ RUN pip install --no-cache-dir torch==2.9.1+cu130 torchvision==0.24.1+cu130 torc
 # Install the RunPod SDK (required by handler.py)
 RUN pip install --no-cache-dir runpod
 
-# Install worker dependencies (runpod, websocket-client, etc.)
-RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
-
 # Clone ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
 WORKDIR /comfyui
@@ -27,6 +23,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Clone the official RunPod worker repository
 RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfyui
+
+RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 

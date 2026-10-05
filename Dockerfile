@@ -54,4 +54,6 @@ RUN pip install --no-cache-dir -r ComfyUI-KJNodes/requirements.txt || true
 WORKDIR /comfyui
 
 # Start the Serverless worker
-CMD ["python", "-u", "/comfyui/handler.py"]
+COPY start.sh /comfyui/start.sh
+RUN chmod +x /comfyui/start.sh
+CMD ["/comfyui/start.sh"]

@@ -21,18 +21,11 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git /comfyui
 WORKDIR /comfyui
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Clone the official RunPod worker repository
-RUN git clone https://github.com/runpod-workers/worker-comfyui.git /worker-comfyui
-RUN pip install --no-cache-dir -r /worker-comfyui/requirements.txt
-ENV PYTHONPATH="/worker-comfyui:${PYTHONPATH}"
+# Use the official RunPod ComfyUI base image
+# It already includes the correct handler, start.sh, and network_volume.py
+FROM runpod/worker-comfyui:5.10.0-base
 
 COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
-
-# Copy the handler and startup script from the cloned worker repo into ComfyUI
-RUN cp /worker-comfyui/handler.py /comfyui/handler.py
-RUN cp /worker-comfyui/network_volume.py /comfyui/network_volume.py
-# RUN cp /worker-comfyui/start.sh /comfyui/start.sh
-# RUN chmod +x /comfyui/start.sh
 
 # Install MiniMax H3 Custom Nodes
 WORKDIR /comfyui/custom_nodes

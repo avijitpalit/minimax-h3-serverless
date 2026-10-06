@@ -51,5 +51,7 @@ RUN pip install --no-cache-dir -r ComfyUI-KJNodes/requirements.txt || true
 # Back to ComfyUI root
 WORKDIR /comfyui
 
-# Start the handler directly (no custom start.sh)
-CMD ["python", "-u", "/worker-comfyui/handler.py"]
+# Copy and run start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"]
